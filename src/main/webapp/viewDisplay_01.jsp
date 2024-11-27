@@ -29,12 +29,13 @@ tbody tr {
 	border: 1px solid #ddd
 	}
 </style>
- </head>
+</head>
 <body>
 <div class="container">
 <div class="row">
 
 <table class="table table-bordered table-responsive table-striped">
+
 <thead>
 <tr>
 <th>Course Id</th>
@@ -47,13 +48,11 @@ tbody tr {
 </thead>
 
 <%
-String course_id = request.getParameter("id");
-try {
-Class.forName("com.mysql.jdbc.Driver");
 
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_abhay", "jugo", "1234");
-PreparedStatement ps = con.prepareStatement("Select * from courses where Course_Id=?");
-ps.setString(1, course_id);
+try {
+Class.forName("com.mysql.jdbc.Driver"); Connection con =
+DriverManager.getConnection("jdbc:mysql://localhost:3306/db_abhay", "jugo","1234");
+PreparedStatement ps = con.prepareStatement("Select * from courses");
 ResultSet rs = ps.executeQuery();
 while (rs.next() == true) {
 
@@ -61,6 +60,7 @@ while (rs.next() == true) {
 
 
 <tbody>
+
 <tr>
 <td> <%= rs.getInt(1) %> </td>
 <td> <%= rs.getString(2) %> </td>
@@ -69,8 +69,8 @@ while (rs.next() == true) {
 <td> <%= rs.getString(5) %> </td>
 <td> <%= rs.getString(6) %> </td>
 </tr>
-</tbody>
 
+</tbody>
 <%
 
 }
